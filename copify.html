@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <!--icone-->
+    <link rel="icon" href="uploads/favicon.ico" type="image/x-icon">
+    <title>Copify - Web player: cópias para todas as pessoas</title>
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="styleCopify.css" />
+</head>
+
+<body>
+    <!--os botão que ficam lá em cima-->
+    <div id="mainOpt">
+        <div id="mainTopBtn">
+            <!--as setas-->
+            <img src="uploads/mainLeftSetaIcon.png" class="mainSeta" onclick="mostraInicio();">
+            <img src="uploads/mainRightSetaIcon.png" class="mainSeta">
+        </div>
+        <div id="mainPlaylistOpt">
+            <!--botão de play ao abrir uma playlist/album-->
+            <img src="uploads/greenPlayBtn.png" class="playlistmainOptPlay">
+            <!--nome da playlist/album quando esta aberta-->
+            <h2 id="mainOptPlaylistName">Sgt Peppers Lonely Hearts Club Band (Remas...</h2>
+        </div>
+        <div id="mainTopRight">
+            <!--botão de install-->
+            <div id="installBtn">
+                <img src="uploads/installIcon.png" id="installImg">
+                <p>Instalar aplicativo</p>
+            </div>
+            <!--botão de notificação-->
+            <img src="uploads/greySino.png" id="sinoImg" onmouseover="mudaSino();" onmouseout="voltaSino();">
+            <!--botão do perfil-->
+            <img src="uploads/hax.jpeg" id="perfilImg">
+        </div>
+    </div>
+
+    <!--barra do player-->
+    <div id="player">
+        <!--informações da musica que esta tocando-->
+        <div id="musicIcon">
+            <!--capa do album que esta tocando-->
+            <img src="uploads/painkiller.jpg" id="playerAlbumIcon" onmouseover="mostraSeta();" onmouseout="someSeta();">
+            <img src="uploads/playerSetaIcon.png" id="playerSetaIcon">
+            <div id="playerText">
+                <!--nome da musica-->
+                <p id="playerSongName">A Touch of Evil</p>
+                <!--nome da banda-->
+                <p id="playerBandName">Judas Priest</p>
+            </div>
+            <!--botão de like-->
+            <img src="uploads/coracao.png" id="coracao" onclick="mudaCoracao();">
+        </div>
+        <div id="playerTrack">
+            <div id="buttons">
+                <!--botão de "shuffle"-->
+                <img src="uploads/greyRandomBtn.png" id="randomBtn" onclick="mudaRandom();">
+                <!--botão de "back"-->
+                <img src="uploads/greyBackBtn.png" class="trackBtn" id="backBtn" onmouseover="mudaBackBtn();"
+                    onmouseout="voltaBackBtn();">
+                <!--botão do play-->
+                <img src="uploads/play.png" id="playBtn" onclick="mudaPlay();">
+                <!--botão de "next"-->
+                <img src="uploads/greyNextBtn.png" class="trackBtn" id="nextBtn" onmouseover="mudaNextBtn();"
+                    onmouseout="voltaNextBtn();">
+                <!--botão de loop-->
+                <img src="uploads/loop.png" id="loopBtn" onclick="mudaLoop();">
+            </div>
+            <div id="barraContainer">
+                <!--tempo atual-->
+                <p id="tempoUm"><b>4:04</b></p>
+                <!--barra da musica-->
+                <div id="barra">
+                    <div id="loadBar"></div>
+                    <div id="bolaBarra"></div>
+                </div>
+                <!--tempo total da musica-->
+                <p id="tempoDois"><b>5:44</b></p>
+            </div>
+        </div>
+        <!--os botões direitos do player-->
+        <div id="playerOptions">
+            <!--botão tocando agora-->
+            <img src="uploads/tocandoAgr.png" id="tocandoAgrBtn" onmouseover="mudaTocandoAgr();"
+                onmouseout="voltaTocandoAgr();">
+            <!--botão da letra-->
+            <img src="uploads/greyMicrofone.png" id="microfone" onmouseover="mudaMicrofone();"
+                onmouseout="voltaMicrofone();">
+            <!--botão da fila-->
+            <img src="uploads/fila.png" id="filaBtn" class="playerOpts" onmouseover="mudaFila();"
+                onmouseout="voltaFila();">
+            <!--botão dos dispositivos-->
+            <img src="uploads/dispositivos.png" id="dispositivoBtn" class="playerOpts" onmouseover="mudaDispositivos();"
+                onmouseout="voltaDispositivos();">
+            <!--botão do som-->
+            <img src="uploads/som.png" id="volumeBtn" class="playerOpts" onmouseover="mudaSom();"
+                onmouseout="voltaSom();" onclick="mutaSom();">
+            <!--barra do volume-->
+            <div id="volumeContainer" onmouseover="mudaBarraSom();" onmouseout="voltaBarraSom();">
+                <div id="barraVolume"></div>
+                <div id="volumeBola"></div>
+            </div>
+            <!--botão picture in picture-->
+            <img src="uploads/pictureInPicture.png" id="picInPicBtn" onmouseover="mudaPicInPic();"
+                onmouseout="voltaPicInPic();">
+            <!--botão de tela cheia-->
+            <img src="uploads/telaCheia.png" id="telaCheiaBtn" class="playerOpts" onmouseover="mudaTelaCheia();"
+                onmouseout="voltaTelaCheia();">
+        </div>
+    </div>
+
+    <!--menu onde ta o botão do inicio e de busca-->
+    <div id="menu">
+        <!--botão inicio-->
+        <div class="menuOpt" id="homeOpt" onclick="mostraInicio();" onmouseover="mudaCasa();" onmouseout="voltaCasa();">
+            <img src="uploads/greyHomeIcon.png" id="homeIcon">
+            <p><b>Início</b></p>
+        </div>
+        <!--botão buscar-->
+        <div class="menuOpt" id="surchOpt" onmouseover="mudaLupa();" onmouseout="voltaLupa();">
+            <img src="uploads/greySurchIcon.png" id="surchIcon">
+            <p><b>Buscar</b></p>
+        </div>
+    </div>
+
+    <!--biblioteca-->
+    <div id="biblioteca">
+        <!--parte de cima da biblioteca-->
+        <div id="bibleHeader">
+            <div id="bibleTitulo">
+                <!--botão da biblioteca-->
+                <div id="bibleBtn" onmouseover="mudaBibleBtn();" onmouseout="voltaBibleBtn();">
+                    <img src="uploads/greyBibleIcon.png" id="bibleIcon">
+                    <p><b>Sua biblioteca</b></p>
+                </div>
+                <!--botão de mais-->
+                <img src="uploads/greyMaisIcon.png" id="maisIcon" onmouseover="mudaMais();" onmouseout="voltaMais();">
+                <!--seta da biblioteca-->
+                <img src="uploads/greySetaIcon.png" id="setaIcon" onmouseover="mudaSeta();" onmouseout="voltaSeta();">
+            </div>
+            <!--opções da biblioteca-->
+            <div id="bibleSelect">
+                <p class="bibleOpt">Playlists</p>
+                <p class="bibleOpt">Artistas</p>
+                <p class="bibleOpt">Álbuns</p>
+                <img src="uploads/greyBibleSetaIcon.png" id="bibleSeta" onmouseover="mudaBibleSetaIcon();"
+                    onmouseout="voltaBibleSetaIcon();">
+            </div>
+        </div>
+        <!--parte de baixo da biblioteca-->
+        <div id="bibleList">
+            <div id="bibleSurch">
+                <!--botão de busca da biblioteca-->
+                <img src="uploads/greySurchIcon.png" id="bibleSurchIcon" onmouseover="mudaBibleSurch();"
+                    onmouseout="voltaBibleSurch();">
+                <!--botão de "order by"-->
+                <div id="orderBtn" onmouseover="mudaOrderBtn();" onmouseout="voltaOrderBtn();">
+                    <p>Recentes</p>
+                    <img src="uploads/greyTriangulo.png" id="triangulo">
+                </div>
+            </div>
+
+            <!-- playlist musicas curtidas-->
+            <div class="biblePlaylist">
+                <img src="uploads/likedSongs.jpeg" class="playlistThumb">
+                <div class="playlistText">
+                    <p class="bibleAlbumName">Músicas Curtidas</p>
+                    <div class="playlistTextBottom">
+                        <img src="uploads/alfinete.png" id="alfinete">
+                        <p class="bibleBandName">Playlist</p>
+                        <div class="bolinha"></div>
+                        <p class="bibleBandName">574 músicas</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--album sgt. peppers-->
+            <div class="biblePlaylist" onclick="mostraSgtPeppers();">
+                <img src="uploads/sgtPepper.jpeg" class="playlistThumb">
+                <div class="playlistText">
+                    <p class="bibleAlbumName">Sgt. Peppers Lonely Heart...</p>
+                    <div class="playlistTextBottom">
+                        <p class="bibleBandName">Álbum</p>
+                        <div class="bolinha"></div>
+                        <p class="bibleBandName">Metallica</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--album st anger-->
+            <div class="biblePlaylist">
+                <img src="uploads/anger.jpg" class="playlistThumb">
+                <div class="playlistText">
+                    <p class="bibleAlbumName">St. Anger</p>
+                    <div class="playlistTextBottom">
+                        <p class="bibleBandName">Álbum</p>
+                        <div class="bolinha"></div>
+                        <p class="bibleBandName">Metallica</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--album the number of the beast-->
+            <div class="biblePlaylist">
+                <img src="uploads/beast.jpg" class="playlistThumb">
+                <div class="playlistText">
+                    <p class="bibleAlbumName">The Number of the Beast ...</p>
+                    <div class="playlistTextBottom">
+                        <p class="bibleBandName">Álbum</p>
+                        <div class="bolinha"></div>
+                        <p class="bibleBandName">Iron Maiden</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--playlist megadead-->
+            <div class="biblePlaylist">
+                <img src="uploads/vic.jpg" class="playlistThumb">
+                <div class="playlistText">
+                    <p class="bibleAlbumName">MegaDead</p>
+                    <div class="playlistTextBottom">
+                        <p class="bibleBandName">Playlist</p>
+                        <div class="bolinha"></div>
+                        <p class="bibleBandName">cs.kaua21</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--playlist metallicum-->
+            <div class="biblePlaylist">
+                <img src="uploads/metallica.jpg" class="playlistThumb">
+                <div class="playlistText">
+                    <p class="bibleAlbumName">Metallicum</p>
+                    <div class="playlistTextBottom">
+                        <p class="bibleBandName">Playlist</p>
+                        <div class="bolinha"></div>
+                        <p class="bibleBandName">vinnieHax</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--playlist holy dio-->
+            <div class="biblePlaylist" onclick="mostraHolyDio();">
+                <img src="uploads/holyDio.png" class="playlistThumb">
+                <div class="playlistText">
+                    <p class="bibleAlbumName">Holy Dio</p>
+                    <div class="playlistTextBottom">
+                        <p class="bibleBandName">Playlist</p>
+                        <div class="bolinha"></div>
+                        <p class="bibleBandName">cs.kaua21</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--album rust in peace-->
+            <div class="biblePlaylist">
+                <img src="uploads/rust.jpg" class="playlistThumb">
+                <div class="playlistText">
+                    <p class="bibleAlbumName">Rust In Peace (2004 Remi...</p>
+                    <div class="playlistTextBottom">
+                        <p class="bibleBandName">Álbum</p>
+                        <div class="bolinha"></div>
+                        <p class="bibleBandName">Megadeth</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--playlist steve vai-->
+            <div class="biblePlaylist">
+                <img src="uploads/vai.png" class="playlistThumb">
+                <div class="playlistText">
+                    <p class="bibleAlbumName">Steve Vai</p>
+                    <div class="playlistTextBottom">
+                        <p class="bibleBandName">Playlist</p>
+                        <div class="bolinha"></div>
+                        <p class="bibleBandName">vinnieHax</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--album sehnsucht-->
+            <div class="biblePlaylist">
+                <img src="uploads/sehn.jpg" class="playlistThumb">
+                <div class="playlistText">
+                    <p class="bibleAlbumName">Sehnsucht</p>
+                    <div class="playlistTextBottom">
+                        <p class="bibleBandName">Álbum</p>
+                        <div class="bolinha"></div>
+                        <p class="bibleBandName">Rammstein</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--album innuendo-->
+            <div class="biblePlaylist">
+                <img src="uploads/innuendo.jpg" class="playlistThumb">
+                <div class="playlistText">
+                    <p class="bibleAlbumName">Innuendo (2011 Remaster)</p>
+                    <div class="playlistTextBottom">
+                        <p class="bibleBandName">Álbum</p>
+                        <div class="bolinha"></div>
+                        <p class="bibleBandName">Queen</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--playlist bloody sabbath-->
+            <div class="biblePlaylist">
+                <img src="uploads/sabbath.png" class="playlistThumb">
+                <div class="playlistText">
+                    <p class="bibleAlbumName">Bloody Sabbath</p>
+                    <div class="playlistTextBottom">
+                        <p class="bibleBandName">Playlist</p>
+                        <div class="bolinha"></div>
+                        <p class="bibleBandName">vinnieHax</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--album toxicity-->
+            <div class="biblePlaylist">
+                <img src="uploads/toxicity.jpg" class="playlistThumb">
+                <div class="playlistText">
+                    <p class="bibleAlbumName">Toxicity</p>
+                    <div class="playlistTextBottom">
+                        <p class="bibleBandName">Álbum</p>
+                        <div class="bolinha"></div>
+                        <p class="bibleBandName">System Of A Down</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--playlist trapped in an iron maiden-->
+            <div class="biblePlaylist">
+                <img src="uploads/maiden.png" class="playlistThumb">
+                <div class="playlistText">
+                    <p class="bibleAlbumName">Trapped In An Iron Maiden</p>
+                    <div class="playlistTextBottom">
+                        <p class="bibleBandName">Playlist</p>
+                        <div class="bolinha"></div>
+                        <p class="bibleBandName">vinnieHax</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--caixa principal-->
+    <div id="main">
+        <!--pagina inicial-->
+        <div id="inicio">
+            <!--parte de cima da pagina inicial-->
+            <div id="mainTop">
+                <!--mensagem de boas vindas-->
+                <h1 id="horaMsg">Boa tarde</h1>
+                <!--as 6 playlists/albuns lá de cima-->
+                <div id="mainGrid">
+                    <!--sgt. peppers-->
+                    <div class="mainPlaylist">
+                        <div class="mainPlaylistLeft" onclick="mostraSgtPeppers();">
+                            <img src="uploads/sgtPepper.jpeg" class="mainPlaylistThumb">
+                            <p>Sgt. Pepper's<br>Lonely Hearts...</p>
+                        </div>
+                        <img src="uploads/greenPlayBtn.png" class="mainPlaylistRight" id="mainSgtPeppersPlay"
+                            onclick="playSgtPeppers();">
+                    </div>
+
+                    <!--holy dio-->
+                    <div class="mainPlaylist" id="mainPlaylist2">
+                        <div class="mainPlaylistLeft" onclick="mostraHolyDio();">
+                            <img src="uploads/holyDio.png" class="mainPlaylistThumb">
+                            <p>Holy Dio</p>
+                        </div>
+                        <img src="uploads/greenPlayBtn.png" class="mainPlaylistRight" id="mainHolyDioPlay"
+                            onclick="playHolyDio();">
+                    </div>
+
+                    <!--rust in peace-->
+                    <div class="mainPlaylist" id="mainPlaylist3">
+                        <div class="mainPlaylistLeft">
+                            <img src="uploads/rust.jpg" class="mainPlaylistThumb">
+                            <p>Rust In Peace<br>(2004 Remix...</p>
+                        </div>
+                        <img src="uploads/greenPlayBtn.png" class="mainPlaylistRight" id="mainRustPlay"
+                            onclick="playRust();">
+                    </div>
+
+                    <!--innuendo-->
+                    <div class="mainPlaylist" id="mainPlaylist4">
+                        <div class="mainPlaylistLeft">
+                            <img src="uploads/innuendo.jpg" class="mainPlaylistThumb">
+                            <p>Innuendo (2011<br>Remastered)</p>
+                        </div>
+                        <img src="uploads/greenPlayBtn.png" class="mainPlaylistRight" id="mainInnuendoPlay"
+                            onclick="playInnuendo();">
+                    </div>
+
+                    <!--st anger-->
+                    <div class="mainPlaylist" id="mainPlaylist5">
+                        <div class="mainPlaylistLeft">
+                            <img src="uploads/anger.jpg" class="mainPlaylistThumb">
+                            <p>St. Anger</p>
+                        </div>
+                        <img src="uploads/greenPlayBtn.png" class="mainPlaylistRight" onclick="playStAnger();"
+                            id="mainStAngerPlay">
+                    </div>
+
+                    <!--sehnsucht-->
+                    <div class="mainPlaylist" id="mainPlaylist6">
+                        <div class="mainPlaylistLeft">
+                            <img src="uploads/sehn.jpg" class="mainPlaylistThumb">
+                            <p>Sehnsucht</p>
+                        </div>
+                        <img src="uploads/greenPlayBtn.png" class="mainPlaylistRight" id="mainSehnPlay"
+                            onclick="playSehn();">
+                    </div>
+                </div>
+            </div>
+            <!--parte "suas musicas estão com saudade"-->
+            <div class="mainTitulo">
+                <h2>Suas músicas estão com saudade</h2>
+                <h5>Mostrar tudo</h5>
+            </div>
+            <div class="mainList">
+                <!--queen II-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/queenII.jpeg" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="queenIIPlay"
+                        onclick="playQueenII();">
+                    <div class="mainAlbumCardText">
+                        <h2>Queen II (Remas...</h2>
+                        <p>Queen</p>
+                    </div>
+                </div>
+                <!--this is kiko loureiro-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/kikoLoureiro.jpg" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="kikoPlay" onclick="playKiko();">
+                    <div class="mainAlbumCardText">
+                        <h2>This Is Kiko Lour...</h2>
+                        <p>This is Kiko Loureiro. Todos os maiores hit...</p>
+                    </div>
+                </div>
+                <!--the number of the beast-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/beast.jpg" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="beastPlay" onclick="playBeast();">
+                    <div class="mainAlbumCardText">
+                        <h2>The Number of t...</h2>
+                        <p>Iron Maiden</p>
+                    </div>
+                </div>
+                <!--Ich weiß nicht, welchen Namen ich hier setzen soll (playlist de rammstein)-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/rammLogo.JPG" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="rammPlay" onclick="playRamm();">
+                    <div class="mainAlbumCardText">
+                        <h2>Ich weiß nicht, w...</h2>
+                        <p>De cs.kaua21</p>
+                    </div>
+                </div>
+                <!--from mars to sirius-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/sirius.jpg" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="siriusPlay"
+                        onclick="playSirius();">
+                    <div class="mainAlbumCardText">
+                        <h2>From Mars To Sir...</h2>
+                        <p>Gojira</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--parte "episodios para você"-->
+            <div class="mainTitulo">
+                <h2>Episódios para você</h2>
+                <h5>Mostrar tudo</h5>
+            </div>
+            <div class="mainList">
+                <!--frança e o labirinto-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/franca.jpeg" class="mainAlbumCardImg">
+                    <div class="mainAlbumCardText">
+                        <h2>08. Um passo a f...</h2>
+                        <p>29 de ago. - 36min</p>
+                    </div>
+                </div>
+                <!--podpah-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/podpah.jpeg" class="mainAlbumCardImg">
+                    <div class="mainAlbumCardText">
+                        <h2>CAUE MOURA &...</h2>
+                        <p>29 de jun. - 172min</p>
+                    </div>
+                </div>
+                <!--amplifica-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/amplifica.jpg" class="mainAlbumCardImg">
+                    <div class="mainAlbumCardText">
+                        <h2>ANDERSON GAV...</h2>
+                        <p>25 de mai. - 182min</p>
+                    </div>
+                </div>
+                <!--luciola-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/monkeyBooks.PNG" class="mainAlbumCardImg">
+                    <div class="mainAlbumCardText">
+                        <h2>José de Alencar...</h2>
+                        <p>12 de fev. - 321min</p>
+                    </div>
+                </div>
+                <!--bocadinhas-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/bocadinhas.jpeg" class="mainAlbumCardImg">
+                    <div class="mainAlbumCardText">
+                        <h2>Bocadinhas 03 - ...</h2>
+                        <p>22 de fev. - 65min</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--parte "tocados recentemente"-->
+            <div class="mainTitulo">
+                <h2>Tocados recentemente</h2>
+                <h5>Mostrar tudo</h5>
+            </div>
+            <div class="mainList">
+                <!--st anger-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/anger.jpg" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" onclick="playStAnger();"
+                        id="albumCardStAngerPlay">
+                    <div class="mainAlbumCardText">
+                        <h2>St. Anger</h2>
+                        <p>Metallica</p>
+                    </div>
+                </div>
+                <!--megadead-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/vic.jpg" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" onclick="playMegadead();"
+                        id="megadeadPlay">
+                    <div class="mainAlbumCardText">
+                        <h2>MegaDead</h2>
+                        <p>De cs.kaua21</p>
+                    </div>
+                </div>
+                <!--rust in peace-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/rust.jpg" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" onclick="playRust();"
+                        id="albumCardRustPlay">
+                    <div class="mainAlbumCardText">
+                        <h2>Rust In Peace (2...</h2>
+                        <p>Megadeth</p>
+                    </div>
+                </div>
+                <!--innuendo-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/innuendo.jpg" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" onclick="playInnuendo();"
+                        id="albumCardInnuendoPlay">
+                    <div class="mainAlbumCardText">
+                        <h2>Innuendo (2011...</h2>
+                        <p>Queen</p>
+                    </div>
+                </div>
+                <!--toxicity-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/toxicity.jpg" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="toxicityPlay"
+                        onclick="playToxicity();">
+                    <div class="mainAlbumCardText">
+                        <h2>Toxicity</h2>
+                        <p>System Of A Down</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--parte "suas playlists"-->
+            <div class="mainTitulo">
+                <h2>Suas playlists</h2>
+                <h5>Mostrar tudo</h5>
+            </div>
+            <div class="mainList">
+                <!--metallicum-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/metallica.jpg" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="metallicaPlay"
+                        onclick="playMetallica();">
+                    <div class="mainAlbumCardText">
+                        <h2>Metallicum</h2>
+                        <p>De vinnieHax</p>
+                    </div>
+                </div>
+                <!--bloody sabbath-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/sabbath.png" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="sabbathPlay"
+                        onclick="playSabbath();">
+                    <div class="mainAlbumCardText">
+                        <h2>Bloody Sabbath</h2>
+                        <p>De vinnieHax</p>
+                    </div>
+                </div>
+                <!--trapped in an iron maiden-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/maiden.png" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="maidenPlay"
+                        onclick="playMaiden();">
+                    <div class="mainAlbumCardText">
+                        <h2>Trapped In An Ir...</h2>
+                        <p>De vinnieHax</p>
+                    </div>
+                </div>
+                <!--steve vai-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/vai.png" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="steveVaiPlay"
+                        onclick="playVai();">
+                    <div class="mainAlbumCardText">
+                        <h2>Steve Vai</h2>
+                        <p>De vinnieHax</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--parte "daily mix"-->
+            <div class="mainTitulo">
+                <h2>Feito para você</h2>
+                <h5>Mostrar tudo</h5>
+            </div>
+            <div class="mainList">
+                <!--daily mix 1-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/mix1.png" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="mix1Play" onclick="playMix1();">
+                    <div class="mainAlbumCardText">
+                        <h2>Daily Mix 1</h2>
+                        <p>Gojira, Cannibal Corpse, Slayer e mais</p>
+                    </div>
+                </div>
+                <!--daily mix 2-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/mix2.png" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="mix2Play" onclick="playMix2();">
+                    <div class="mainAlbumCardText">
+                        <h2>Daily Mix 2</h2>
+                        <p>Judas Priest, Dio, Black Sabbath e mais</p>
+                    </div>
+                </div>
+                <!--daily mix 3-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/mix3.png" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="mix3Play" onclick="playMix3();">
+                    <div class="mainAlbumCardText">
+                        <h2>Daily Mix 3</h2>
+                        <p>Emigrate, Rammstein, Adema e mais</p>
+                    </div>
+                </div>
+                <!--daily mix 4-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/mix4.png" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="mix4Play" onclick="playMix4();">
+                    <div class="mainAlbumCardText">
+                        <h2>Daily Mix 4</h2>
+                        <p>Martin Miller, Steve Vai, Kiko Loureiro e...</p>
+                    </div>
+                </div>
+                <!--daily mix 5-->
+                <div class="mainAlbumCard">
+                    <img src="uploads/mix5.png" class="mainAlbumCardImg">
+                    <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="mix5Play" onclick="playMix5();">
+                    <div class="mainAlbumCardText">
+                        <h2>Daily Mix 5</h2>
+                        <p>Queen, Freddie Mercury, Sam Ryder...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--pagina sgt peppers-->
+        <div id="sgtPeppersPage">
+            <!--gradient-->
+            <div id="sgtPeppersGradient">
+                <!--parte de cima da pagina-->
+                <div class="playlistHeader">
+                    <!--capa do album-->
+                    <img src="uploads/sgtPepper.jpeg" class="playlistImg">
+                    <div class="playlistHeaderTxt">
+                        <!--tipo album/playlist-->
+                        <p class="playlistTipo">Álbum</p>
+                        <!--nome do album-->
+                        <h1 id="sgtPeppersName">Sgt. Pepper's Lonely Hearts Club Band (Remastered)</h1>
+                        <!--informações do album-->
+                        <div class="playlistInfo">
+                            <!--foto de perfil da banda-->
+                            <img src="uploads/beatles.jpeg" class="bandImg">
+                            <!--nome da banda-->
+                            <p class="playlistBandName">The Beatles</p>
+                            <div class="playlistBola"></div>
+                            <!--ano de lançamento-->
+                            <p class="playlistAno">1967</p>
+                            <div class="playlistBola"></div>
+                            <!--quantidade de musicas-->
+                            <p class="playlistNumTrack">13 músicas,</p>
+                            <!--duração do album-->
+                            <p class="playlistTempo">39min 55 s</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="playlistTracklist">
+                    <div class="tracklistBtn">
+                        <!--botão de play-->
+                        <img src="uploads/greenPlayBtn.png" class="playlistPlayBtn" id="playlistSgtPeppersPlay"
+                            onclick="playSgtPeppers();">
+                        <!--like do album-->
+                        <img src="uploads/coracao.png" class="playlistHeartBtn" id="sgtPeppersPlaylistHeart"
+                            onclick="peppersHeart();">
+                        <!--os botão de opções do album-->
+                        <div class="tracklistBtnOpt">
+                            <div class="trackOptBola"></div>
+                            <div class="trackOptBola"></div>
+                            <div class="trackOptBola"></div>
+                        </div>
+                    </div>
+                    <div class="trackInfo">
+                        <div class="trackInfoLeft">
+                            <p class="hashtag">#</p>
+                            <p class="titulo">Título</p>
+                        </div>
+                        <img src="uploads/relogio.png" class="relogio">
+
+                    </div>
+                    <div class="topTrackBarra"></div>
+                    <!--tracklist-->
+                    <!--sgt. peppers-->
+                    <div class="track">
+                        <div id="sgtPeppersPlayNum">
+                            <p class="trackNum">1</p>
+                        </div>
+                        <div class="albumTrackText">
+                            <p class="songName">Sgt. Pepper's Lonely Hearts Club Band - Remastered 2009</p>
+                            <p class="trackBandName">The Beatles</p>
+                        </div>
+                        <div class="AlbumTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">2:02</p>
+                        </div>
+                    </div>
+                    <!--with a little help from my friends-->
+                    <div class="track">
+                        <p class="trackNum">2</p>
+                        <div class="albumTrackText">
+                            <p class="songName">With A Little Help From My Friends- Remastered 2009</p>
+                            <p class="trackBandName">The Beatles</p>
+                        </div>
+                        <div class="AlbumTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">2:44</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--background preto-->
+            <div class="BlackTracklist">
+                <div class="playlistTracklist">
+                    <!--lucy in the sky with diamonds-->
+                    <div class="track">
+                        <p class="trackNum">3</p>
+                        <div class="albumTrackText">
+                            <p class="songName">Lucy In The Sky With Diamonds - Remastered 2009</p>
+                            <p class="trackBandName">The Beatles</p>
+                        </div>
+                        <div class="AlbumTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">3:28</p>
+                        </div>
+                    </div>
+                    <!--getting better-->
+                    <div class="track">
+                        <p class="trackNum">4</p>
+                        <div class="albumTrackText">
+                            <p class="songName">Getting Better - Remastered 2009</p>
+                            <p class="trackBandName">The Beatles</p>
+                        </div>
+                        <div class="AlbumTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">2:48</p>
+                        </div>
+                    </div>
+                    <!--fixing a hole-->
+                    <div class="track">
+                        <p class="trackNum">5</p>
+                        <div class="albumTrackText">
+                            <p class="songName">Fixing A Hole - Remastered 2009</p>
+                            <p class="trackBandName">The Beatles</p>
+                        </div>
+                        <div class="AlbumTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">2:36</p>
+                        </div>
+                    </div>
+                    <!--she's is leaving home-->
+                    <div class="track">
+                        <p class="trackNum">6</p>
+                        <div class="albumTrackText">
+                            <p class="songName">She's Leaving Home - Remastered 2009</p>
+                            <p class="trackBandName">The Beatles</p>
+                        </div>
+                        <div class="AlbumTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">3:35</p>
+                        </div>
+                    </div>
+                    <!--being for the benefit of mr. kite-->
+                    <div class="track">
+                        <p class="trackNum">7</p>
+                        <div class="albumTrackText">
+                            <p class="songName">Being For The Benefit Of Mr. Kite! - Remastered 2009</p>
+                            <p class="trackBandName">The Beatles</p>
+                        </div>
+                        <div class="AlbumTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">2:37</p>
+                        </div>
+                    </div>
+                    <!--within you without you (a pior musica do album)-->
+                    <div class="track">
+                        <p class="trackNum">8</p>
+                        <div class="albumTrackText">
+                            <p class="songName">Within You Without You - Remastered 2009</p>
+                            <p class="trackBandName">The Beatles</p>
+                        </div>
+                        <div class="AlbumTrackRight">
+                            <img src="uploads/coracaoVazio.png" class="trackHeartVazio">
+                            <p class="trackTime">5:04</p>
+                        </div>
+                    </div>
+                    <!--when i'm sixty four-->
+                    <div class="track">
+                        <p class="trackNum">9</p>
+                        <div class="albumTrackText">
+                            <p class="songName">When I'm Sixty Four - Remastered 2009</p>
+                            <p class="trackBandName">The Beatles</p>
+                        </div>
+                        <div class="AlbumTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">2:37</p>
+                        </div>
+                    </div>
+                    <!--lovely rita-->
+                    <div class="track">
+                        <p class="trackNumDez">10</p>
+                        <div class="albumTrackText">
+                            <p class="songName">Lovely Rita - Remastered 2009</p>
+                            <p class="trackBandName">The Beatles</p>
+                        </div>
+                        <div class="AlbumTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">2:42</p>
+                        </div>
+                    </div>
+                    <!--good morning good morning-->
+                    <div class="track">
+                        <p class="trackNumDez">11</p>
+                        <div class="albumTrackText">
+                            <p class="songName">Good Morning Good Morning - Remastered 2009</p>
+                            <p class="trackBandName">The Beatles</p>
+                        </div>
+                        <div class="AlbumTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">2:41</p>
+                        </div>
+                    </div>
+                    <!--sgt peppers reprise-->
+                    <div class="track">
+                        <p class="trackNumDez">12</p>
+                        <div class="albumTrackText">
+                            <p class="songName">Sgt Pepper's Lonely Hearts Club Band - Reprise/Remastered 2009</p>
+                            <p class="trackBandName">The Beatles</p>
+                        </div>
+                        <div class="AlbumTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">1:19</p>
+                        </div>
+                    </div>
+                    <!--a day in the life (melhor musica do album e da banda)-->
+                    <div class="track">
+                        <p class="trackNumDez">13</p>
+                        <div class="albumTrackText">
+                            <p class="songName">A Day In The Life - Remastered 2009</p>
+                            <p class="trackBandName">The Beatles</p>
+                        </div>
+                        <div class="AlbumTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">5:37</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!--outras informações-->
+                <div class="trackBottom">
+                    <p class="data">1 de junho de 1967</p>
+                    <p class="copyright">&copy; 2015 Apple Corps Ltd</p>
+                    <p class="copyright">&copy; 2015 Calderstone Productions Limited (a division of Universal Music
+                        Group)</p>
+                </div>
+
+                <!--merchandise-->
+                <div class="mainTitulo">
+                    <h2>Merchandise</h2>
+                </div>
+                <div class="mainList">
+                    <!--camiseta-->
+                    <div class="mainAlbumCard">
+                        <img src="uploads/beatlesTshirt.jpg" class="mainAlbumCardImg">
+                        <div class="mainAlbumCardText">
+                            <h2>Sgt. Pepper Ladi...</h2>
+                            <p>Show your love for The Beatles with thi...</p>
+                        </div>
+                    </div>
+                    <!--caneca-->
+                    <div class="mainAlbumCard">
+                        <img src="uploads/greyBeatlesMug.png" class="mainAlbumCardImg">
+                        <div class="mainAlbumCardText">
+                            <h2>The Beatles Sgt. ...</h2>
+                            <p>White mug with red lining with album...</p>
+                        </div>
+                    </div>
+                    <!--moletom-->
+                    <div class="mainAlbumCard">
+                        <img src="uploads/greyBeatlesMoleton.png" class="mainAlbumCardImg">
+                        <div class="mainAlbumCardText">
+                            <h2>Light Blue Sgt. P...</h2>
+                            <p>Light blue long sleeve shirt with red "Sgt...</p>
+                        </div>
+                    </div>
+                    <!--pin-->
+                    <div class="mainAlbumCard">
+                        <img src="uploads/greyBeatlesPin.png" class="mainAlbumCardImg">
+                        <div class="mainAlbumCardText">
+                            <h2>Sgt. Peppers Pin</h2>
+                            <p>Enamel pin featuring "SGT. PEPPERS...</p>
+                        </div>
+                    </div>
+                    <!--lancheira-->
+                    <div class="mainAlbumCard">
+                        <img src="uploads/greyBeatlesLancheira.png" class="mainAlbumCardImg">
+                        <div class="mainAlbumCardText">
+                            <h2>The Beatles x Ra...</h2>
+                            <p>The hottest lunchbox in the school...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!--outros albuns dos beatles-->
+                <div class="mainTitulo">
+                    <h2>Mais de The Beatles</h2>
+                    <h5>Ver discografia</h5>
+                </div>
+                <div class="mainList">
+                    <!--abbey road-->
+                    <div class="mainAlbumCard">
+                        <img src="uploads/abbeyRoad.jpeg" class="mainAlbumCardImg">
+                        <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="abbeyRoadPlay"
+                            onclick="playAbbeyRoad();">
+                        <div class="mainAlbumCardText">
+                            <h2>Abbey Road (Re...</h2>
+                            <p>1969</p>
+                        </div>
+                    </div>
+                    <!--white album-->
+                    <div class="mainAlbumCard">
+                        <img src="uploads/whiteAlbum.jpeg" class="mainAlbumCardImg">
+                        <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="whiteAlbumPlay"
+                            onclick="playWhiteAlbum()">
+                        <div class="mainAlbumCardText">
+                            <h2>The Beatles (Re...</h2>
+                            <p>1968</p>
+                        </div>
+                    </div>
+                    <!--help-->
+                    <div class="mainAlbumCard">
+                        <img src="uploads/help.jpeg" class="mainAlbumCardImg">
+                        <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="helpPlay"
+                            onclick="playHelp();">
+                        <div class="mainAlbumCardText">
+                            <h2>Help! (Remaster...</h2>
+                            <p>1965</p>
+                        </div>
+                    </div>
+                    <!--rubber soul-->
+                    <div class="mainAlbumCard">
+                        <img src="uploads/rubberSoul.jpeg" class="mainAlbumCardImg">
+                        <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="rubberSoulPlay"
+                            onclick="playRubberSoul();">
+                        <div class="mainAlbumCardText">
+                            <h2>Rubber Soul (Re...</h2>
+                            <p>1965</p>
+                        </div>
+                    </div>
+                    <!--let it be-->
+                    <div class="mainAlbumCard">
+                        <img src="uploads/letItBe.jpeg" class="mainAlbumCardImg">
+                        <img src="uploads/greenPlayBtn.png" class="mainAlbumCardPlay" id="letItBePlay"
+                            onclick="playLetItBe();">
+                        <div class="mainAlbumCardText">
+                            <h2>Let It Be (Remas...</h2>
+                            <p>1970</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--pagina holy dio-->
+        <div id="holyDioPage">
+            <!--gradient-->
+            <div class="holyDioGradient">
+                <!--parte de cima da playlist-->
+                <div class="playlistHeader">
+                    <!--'capa' da playlist-->
+                    <img src="uploads/holyDio.png" class="playlistImg">
+                    <div class="playlistHeaderTxt">
+                        <!--tipo album/playlist-->
+                        <p class="playlistTipo">Playlist</p>
+                        <!--nome da playlist-->
+                        <h1 id="holyDioName">Holy Dio</h1>
+                        <!--informações da playlist-->
+                        <div class="playlistInfo">
+                            <!--imagem do perfil-->
+                            <img src="uploads/rammLogo.JPG" class="bandImg">
+                            <!--nome do perfil que criou a playlist (eu)-->
+                            <p class="playlistBandName">cs.kaua21</p>
+                            <div class="playlistBola"></div>
+                            <!--quantidade de musicas-->
+                            <p class="playlistNumTrack">78 músicas,</p>
+                            <!--duração da playlist-->
+                            <p class="playlistTempo">5h 30min</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="playlistTracklist">
+                    <div class="tracklistBtn">
+                        <!--botão de play-->
+                        <img src="uploads/greenPlayBtn.png" class="playlistPlayBtn" id="playlistHolyDioPlay"
+                            onclick="playHolyDio();">
+                        <!--botão de like da playlist-->
+                        <img src="uploads/coracao.png" class="playlistHeartBtn" id="HolyDioPlaylistHeart"
+                            onclick="holyDioHeart();">
+                        <!--botão de opções da playlist-->
+                        <div class="tracklistBtnOpt">
+                            <div class="trackOptBola"></div>
+                            <div class="trackOptBola"></div>
+                            <div class="trackOptBola"></div>
+                        </div>
+                    </div>
+                    <div class="trackInfo">
+                        <div class="trackInfoLeft">
+                            <p class="hashtag">#</p>
+                            <p class="titulo">Título</p>
+                        </div>
+                        <div class="trackInfoRight">
+                            <p class="albumInfo">Álbum</p>
+                            <p class="adicionadoInfo">Adicionada em</p>
+                            <img src="uploads/relogio.png" class="relogio">
+                        </div>
+                    </div>
+                    <div class="topTrackBarra"></div>
+                    <!--tracklist-->
+                    <!--heaven & hell-->
+                    <div class="track">
+                        <p class="trackNum">1</p>
+                        <img src="uploads/heavenAndHell.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Heaven & Hell - 2009 Remaster</p>
+                            <p class="trackBandName">Black Sabbath</p>
+                        </div>
+                        <p class="playlistAlbum">Heaven & Hell</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">6:58</p>
+                        </div>
+                    </div>
+                    <!--holy diver-->
+                    <div class="track">
+                        <p class="trackNum">2</p>
+                        <img src="uploads/holyDiver.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Holy Diver</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Holy Diver</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">5:41</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="BlackTracklist">
+                <div class="playlistTracklist">
+                    <!--mistery-->
+                    <div class="track">
+                        <p class="trackNum">3</p>
+                        <img src="uploads/theLastInLine.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Mistery</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">The Last In Line</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">3:28</p>
+                        </div>
+                    </div>
+                    <!--dream evil-->
+                    <div class="track">
+                        <p class="trackNum">4</p>
+                        <img src="uploads/dreamEvil.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Dream Evil</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Dream Evil</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">4:25</p>
+                        </div>
+                    </div>
+                    <!--one night in the city-->
+                    <div class="track">
+                        <p class="trackNum">5</p>
+                        <img src="uploads/theLastInLine.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">One Night In The City</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">The Last In Line</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">5:15</p>
+                        </div>
+                    </div>
+                    <!--i speed at night-->
+                    <div class="track">
+                        <p class="trackNum">6</p>
+                        <img src="uploads/theLastInLine.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">I Speed At Night</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">The Last In Line</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">3:22</p>
+                        </div>
+                    </div>
+                    <!--rock n roll children-->
+                    <div class="track">
+                        <p class="trackNum">7</p>
+                        <img src="uploads/sacredHeart.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Rock 'N' Roll Children</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Sacred Heart</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">4:31</p>
+                        </div>
+                    </div>
+                    <!--killing the dragon-->
+                    <div class="track">
+                        <p class="trackNum">8</p>
+                        <img src="uploads/killingTheDragon.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Killing The Dragon</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Killing The Dragon</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">4:25</p>
+                        </div>
+                    </div>
+                    <!--one more for the road-->
+                    <div class="track">
+                        <p class="trackNum">9</p>
+                        <img src="uploads/masterOfTheMoon.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">One More for the Road</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Master Of The Moon</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">3:17</p>
+                        </div>
+                    </div>
+                    <!--pain-->
+                    <div class="track">
+                        <p class="trackNumDez">10</p>
+                        <img src="uploads/strangeHighways.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Pain</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Strange Highways</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">4:13</p>
+                        </div>
+                    </div>
+                    <!--wild one-->
+                    <div class="track">
+                        <p class="trackNumDez">11</p>
+                        <img src="uploads/lockUpTheWolves.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Wild One</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Lock Up The Wolves</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">4:09</p>
+                        </div>
+                    </div>
+                    <!--fever dreams-->
+                    <div class="track">
+                        <p class="trackNumDez">12</p>
+                        <img src="uploads/magica.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Fever Dreams</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Magica</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">4:38</p>
+                        </div>
+                    </div>
+                    <!--hungry for heaven-->
+                    <div class="track">
+                        <p class="trackNumDez">13</p>
+                        <img src="uploads/sacredHeart.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Hungry For Heaven</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Sacred Heart</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">4:08</p>
+                        </div>
+                    </div>
+                    <!--push-->
+                    <div class="track">
+                        <p class="trackNumDez">14</p>
+                        <img src="uploads/killingTheDragon.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Push</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Killing The Dragon</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">4:09</p>
+                        </div>
+                    </div>
+                    <!--we rock-->
+                    <div class="track">
+                        <p class="trackNumDez">15</p>
+                        <img src="uploads/theLastInLine.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">We Rock</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">The Last In Line</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">4:34</p>
+                        </div>
+                    </div>
+                    <!--shame on the night-->
+                    <div class="track">
+                        <p class="trackNumDez">16</p>
+                        <img src="uploads/holyDiver.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Shame On The Night</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Holy Diver</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">5:19</p>
+                        </div>
+                    </div>
+                    <!--invisible-->
+                    <div class="track">
+                        <p class="trackNumDez">17</p>
+                        <img src="uploads/holyDiver.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Invisible</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Holy Diver</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">5:20</p>
+                        </div>
+                    </div>
+                    <!--straight through the heart-->
+                    <div class="track">
+                        <p class="trackNumDez">18</p>
+                        <img src="uploads/holyDiver.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Straight Through The Heart</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Holy Diver</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">4:32</p>
+                        </div>
+                    </div>
+                    <!--don't talk to strangers-->
+                    <div class="track">
+                        <p class="trackNumDez">19</p>
+                        <img src="uploads/holyDiver.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Don't Talk To Strangers</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Holy Diver</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">4:51</p>
+                        </div>
+                    </div>
+                    <!--caught in the middle-->
+                    <div class="track">
+                        <p class="trackNumDez">20</p>
+                        <img src="uploads/holyDiver.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Caught In The Middle</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Holy Diver</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">4:12</p>
+                        </div>
+                    </div>
+                    <!--gipsy-->
+                    <div class="track">
+                        <p class="trackNumDez">21</p>
+                        <img src="uploads/holyDiver.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Gypsy</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Holy Diver</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">3:39</p>
+                        </div>
+                    </div>
+                    <!--stand up and shout-->
+                    <div class="track">
+                        <p class="trackNumDez">22</p>
+                        <img src="uploads/holyDiver.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Stand Up And Shout</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Holy Diver</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">3:16</p>
+                        </div>
+                    </div>
+                    <!--rainbow in the dark-->
+                    <div class="track">
+                        <p class="trackNumDez">23</p>
+                        <img src="uploads/holyDiver.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Rainbow In The Dark</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Holy Diver</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">4:12</p>
+                        </div>
+                    </div>
+                    <!--man on the silver mountain-->
+                    <div class="track">
+                        <p class="trackNumDez">24</p>
+                        <img src="uploads/blackmoreRainbow.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Man On The Silver Mountain</p>
+                            <p class="trackBandName">Rainbow</p>
+                        </div>
+                        <p class="playlistAlbum">Ritchie Blackmore's Rainbow</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">4:37</p>
+                        </div>
+                    </div>
+                    <!--all the fools sailed away-->
+                    <div class="track">
+                        <div id="holyDioPlayNum">
+                            <p class="trackNumDez">25</p>
+                        </div>
+                        <img src="uploads/dreamEvil.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">All The Fools Sailed Away</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Dream Evil</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">7:11</p>
+                        </div>
+                    </div>
+                    <!--as long as it's not about love-->
+                    <div class="track">
+                        <p class="trackNumDez">26</p>
+                        <img src="uploads/magica.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">As Long As It's Not About Love</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Magica</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">6:28</p>
+                        </div>
+                    </div>
+                    <!--evil eyes-->
+                    <div class="track">
+                        <p class="trackNumDez">27</p>
+                        <img src="uploads/theLastInLine.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Evil Eyes</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">The Last In Line</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">3:38</p>
+                        </div>
+                    </div>
+                    <!--a long comes a spider-->
+                    <div class="track">
+                        <p class="trackNumDez">28</p>
+                        <img src="uploads/killingTheDragon.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">A Long Comes A Spider</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Killing The Dragon</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">3:32</p>
+                        </div>
+                    </div>
+                    <!--losing my insanity-->
+                    <div class="track">
+                        <p class="trackNumDez">29</p>
+                        <img src="uploads/magica.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Losing My Insanity</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Magica</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">5:04</p>
+                        </div>
+                    </div>
+                    <!--shivers-->
+                    <div class="track">
+                        <p class="trackNumDez">30</p>
+                        <img src="uploads/masterOfTheMoon.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Shivers</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Master Of The Moon</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">4:15</p>
+                        </div>
+                    </div>
+                    <!--better in the dark-->
+                    <div class="track">
+                        <p class="trackNumDez">31</p>
+                        <img src="uploads/killingTheDragon.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Better In The Dark</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Killing The Dragon</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">3:43</p>
+                        </div>
+                    </div>
+                    <!--night people-->
+                    <div class="track">
+                        <p class="uploads/trackNumDez">32</p>
+                        <img src="uploads/dreamEvil.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Night People</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Dream Evil</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">4:06</p>
+                        </div>
+                    </div>
+                    <!--sacred heart-->
+                    <div class="track">
+                        <p class="trackNumDez">33</p>
+                        <img src="uploads/sacredHeart.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Sacred Heart</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Sacred Heart</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">6:25</p>
+                        </div>
+                    </div>
+                    <!--master of the moon-->
+                    <div class="track">
+                        <p class="trackNumDez">34</p>
+                        <img src="uploads/masterOfTheMoon.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Master Of The Moon</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Master Of The Moon</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">4:19</p>
+                        </div>
+                    </div>
+                    <!--scream-->
+                    <div class="track">
+                        <p class="trackNumDez">35</p>
+                        <img src="uploads/killingTheDragon.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Scream</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Killing The Dragon</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">5:02</p>
+                        </div>
+                    </div>
+                    <!--egypt-->
+                    <div class="track">
+                        <p class="trackNumDez">36</p>
+                        <img src="uploads/theLastInLine.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Egypt (The Chains Are On)</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">The Last In Line</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">6:57</p>
+                        </div>
+                    </div>
+                    <!--sunset superman-->
+                    <div class="track">
+                        <p class="trackNumDez">37</p>
+                        <img src="uploads/dreamEvil.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Sunset Superman</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Dream Evil</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">5:46</p>
+                        </div>
+                    </div>
+                    <!--naked in the rain-->
+                    <div class="track">
+                        <p class="trackNumDez">38</p>
+                        <img src="uploads/dreamEvil.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Naked In The Rain</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="playlistAlbum">Dream Evil</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">5:09</p>
+                        </div>
+                    </div>
+                    <!--mob rules-->
+                    <div class="track">
+                        <p class="trackNumDez">39</p>
+                        <img src="uploads/mobRules.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">The Mob Rules - 2009 Remaster</p>
+                            <p class="trackBandName">BLack Sabbath</p>
+                        </div>
+                        <p class="playlistAlbum">Mob Rules</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">3:14</p>
+                        </div>
+                    </div>
+                    <!--long live rock n roll-->
+                    <div class="track">
+                        <p class="trackNumDez">40</p>
+                        <img src="uploads/longLiveRnR.jpeg" class="trackAlbumCover">
+                        <div class="trackText">
+                            <p class="songName">Long Live Rock N Roll</p>
+                            <p class="trackBandName">Rainbow</p>
+                        </div>
+                        <p class="playlistAlbum">Long Live Rock N Roll (Deluxe E...</p>
+                        <p class="playlistTrackRight">17 de ago. de 2023</p>
+                        <div class="playlistTrackRight">
+                            <img src="uploads/coracao.png" class="trackHeartBtn">
+                            <p class="trackTime">4:21</p>
+                        </div>
+                    </div>
+
+                    <!--botão 'buscar mais'-->
+                    <p class="playlistBuscaBtn">Buscar mais</p>
+
+                    <!--recomendações-->
+                    <div class="playlistRecomendation">
+                        <h2>Recomendações</h2>
+                        <p>Com base no que está nesta playlist</p>
+                    </div>
+                    <!--lock up the wolves-->
+                    <div class="track">
+                        <img src="uploads/lockUpTheWolves.jpeg" class="recomendationAlbumCover">
+                        <div class="recomendationTrackText">
+                            <p class="songName">Lock Up The Wolves</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="recomendationAlbumName">Lock Up The Wolves</p>
+                        <div class="recomendationBtn">
+                            <p>Adicionar</p>
+                        </div>
+                    </div>
+                    <!--hey angel-->
+                    <div class="track">
+                        <img src="uploads/lockUpTheWolves.jpeg" class="recomendationAlbumCover">
+                        <div class="recomendationTrackText">
+                            <p class="songName">Hey Angel</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="recomendationAlbumName">Lock Up The Wolves</p>
+                        <div class="recomendationBtn">
+                            <p>Adicionar</p>
+                        </div>
+                    </div>
+                    <!--heaven and hell live-->
+                    <div class="track">
+                        <img src="uploads/dioLiveLondon.jpeg" class="recomendationAlbumCover">
+                        <div class="recomendationTrackText">
+                            <p class="songName">Heaven And Hell</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="recomendationAlbumName">Live In London:Hammersmith Ap...</p>
+                        <div class="recomendationBtn">
+                            <p>Adicionar</p>
+                        </div>
+                    </div>
+                    <!--the shinig-->
+                    <div class="track">
+                        <img src="uploads/theEternalIdol.jpeg" class="recomendationAlbumCover">
+                        <div class="recomendationTrackText">
+                            <p class="songName">The Shining - 2009 Remaster</p>
+                            <p class="trackBandName">Black Sabbath</p>
+                        </div>
+                        <p class="recomendationAlbumName">The Eternal Idol (Deluxe Edition)</p>
+                        <div class="recomendationBtn">
+                            <p>Adicionar</p>
+                        </div>
+                    </div>
+                    <!--tarot woman-->
+                    <div class="track">
+                        <img src="uploads/rising.jpeg" class="recomendationAlbumCover">
+                        <div class="recomendationTrackText">
+                            <p class="songName">Tarot Woman</p>
+                            <p class="trackBandName">Rainbow</p>
+                        </div>
+                        <p class="recomendationAlbumName">Rising</p>
+                        <div class="recomendationBtn">
+                            <p>Adicionar</p>
+                        </div>
+                    </div>
+                    <!--starstruck-->
+                    <div class="track">
+                        <img src="uploads/rising.jpeg" class="recomendationAlbumCover">
+                        <div class="recomendationTrackText">
+                            <p class="songName">Starstruck</p>
+                            <p class="trackBandName">Rainbow</p>
+                        </div>
+                        <p class="recomendationAlbumName">Rising</p>
+                        <div class="recomendationBtn">
+                            <p>Adicionar</p>
+                        </div>
+                    </div>
+                    <!--the sentinel-->
+                    <div class="track">
+                        <img src="uploads/defendersOfTheFaith.jpeg" class="recomendationAlbumCover">
+                        <div class="recomendationTrackText">
+                            <p class="songName">The Sentinel</p>
+                            <p class="trackBandName">Judas Priest</p>
+                        </div>
+                        <p class="recomendationAlbumName">Defenders Of The Faith</p>
+                        <div class="recomendationBtn">
+                            <p>Adicionar</p>
+                        </div>
+                    </div>
+                    <!--gates of babylon-->
+                    <div class="track">
+                        <img src="uploads/longLiveRnR.jpeg" class="recomendationAlbumCover">
+                        <div class="recomendationTrackText">
+                            <p class="songName">Gates Of Babylon</p>
+                            <p class="trackBandName">Rainbow</p>
+                        </div>
+                        <p class="recomendationAlbumName">Long Live Rock N Roll (Deluxe E...</p>
+                        <div class="recomendationBtn">
+                            <p>Adicionar</p>
+                        </div>
+                    </div>
+                    <!--kill the king-->
+                    <div class="track">
+                        <img src="uploads/longLiveRnR.jpeg" class="recomendationAlbumCover">
+                        <div class="recomendationTrackText">
+                            <p class="songName">Kill The King</p>
+                            <p class="trackBandName">Rainbow</p>
+                        </div>
+                        <p class="recomendationAlbumName">Long Live Rock N Roll (Deluxe E...</p>
+                        <div class="recomendationBtn">
+                            <p>Adicionar</p>
+                        </div>
+                    </div>
+                    <!--children of the sea (musicasso)-->
+                    <div class="track">
+                        <img src="uploads/dioLiveLondon.jpeg" class="recomendationAlbumCover">
+                        <div class="recomendationTrackText">
+                            <p class="songName">Children Of The Sea</p>
+                            <p class="trackBandName">Dio</p>
+                        </div>
+                        <p class="recomendationAlbumName">Live In London:Hammersmith Ap...</p>
+                        <div class="recomendationBtn">
+                            <p>Adicionar</p>
+                        </div>
+                    </div>
+
+                    <!--botão 'atualizar'-->
+                    <div class="atualizarBtn">Atualizar</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--link pro script-->
+    <script type="text/javascript" src="scriptCopify.js"></script>
+</body>
+
+</html>
+<!--Kauã Costa Seabra - 2023-->
